@@ -10,11 +10,28 @@ module.exports = function (grunt) {
         },
       },
     },
+
+    // Minify CSS
+
+    cssmin: {
+      target: {
+        files: [
+          {
+            expand: true,
+            cwd: 'src/css',
+            src: ['*.css', '!*.min.css'],
+            dest: 'dest/css',
+            ext: '.min.css',
+          },
+        ],
+      },
+    },
   });
 
   // Load libraries
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin')
 
   // Setting Up Tasks.
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('default', ['uglify', 'cssmin']);
 };
